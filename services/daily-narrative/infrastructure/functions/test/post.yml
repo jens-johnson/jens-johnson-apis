@@ -1,0 +1,7 @@
+getProfileInfo:
+  handler: test/post.handler
+  events:
+    - httpApi:
+        method: POST
+        path: /test
+        authorizer: HttpAuthorizer

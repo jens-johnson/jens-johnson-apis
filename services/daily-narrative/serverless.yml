@@ -1,0 +1,31 @@
+org: jensjohnson
+app: apis
+service: apis
+
+configValidationMode: error
+
+custom:
+  stack:
+    name: '${self:org}-${self:app}-${self:service}-${opt:stage, "dev"}'
+  webpack:
+    webpackConfig: webpack.config.js
+    excludeFiles:
+      - test/**
+  functionsBasePath: src/handlers
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stackName: '${self:custom.stack.name}'
+  httpApi:
+    authorizers: ${file(./infrastructure/resources/authentication/authorizers.yml)}
+
+functions:
+  - ${file(./infrastructure/functions/test/post.yml)}
+
+resources:
+  - ${file(./infrastructure/resources/authentication/cognito.yml)}
+
+plugins:
+  - serverless-webpack
+  - serverless-functions-base-path

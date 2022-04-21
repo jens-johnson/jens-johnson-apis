@@ -1,0 +1,44 @@
+Resources:
+  CognitoUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName:
+        Fn::Join: [ '-', [ Ref: AWS::StackName, 'cognito-user-pool' ] ]
+      UsernameAttributes:
+        - email
+      AutoVerifiedAttributes:
+        - email
+      UserPoolTags:
+        StackName:
+          Ref: AWS::StackName
+  CognitoUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName:
+        Fn::Join: [ '-', [ Ref: AWS::StackName, 'cognito-user-pool-client' ] ]
+      AllowedOAuthFlows:
+        - implicit
+      AllowedOAuthFlowsUserPoolClient: true
+      AllowedOAuthScopes:
+        - phone
+        - email
+        - openid
+        - profile
+        - aws.cognito.signin.user.admin
+      UserPoolId:
+        Ref: CognitoUserPool
+      CallbackURLs:
+        - https://localhost:3000
+      ExplicitAuthFlows:
+        - ALLOW_USER_SRP_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+      GenerateSecret: false
+      SupportedIdentityProviders:
+        - COGNITO
+  CognitoUserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      UserPoolId:
+        Ref: CognitoUserPool
+      Domain:
+        Fn::Join: [ '-', [ Ref: AWS::StackName, 'user-pool-domain' ] ]

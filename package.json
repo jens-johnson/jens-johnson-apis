@@ -1,0 +1,17 @@
+{
+  "name": "jens-johnson-api",
+  "version": "0.1.0",
+  "description": "A collection of personal APIs and services",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jens Johnson",
+  "license": "ISC",
+  "workspaces": [
+    "services/dailyNarrative"
+  ]
+}

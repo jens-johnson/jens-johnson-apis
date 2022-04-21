@@ -1,0 +1,24 @@
+{
+  "name": "daily-services",
+  "version": "0.1.0",
+  "description": "Data services for daily summary data",
+  "keywords": [
+    "serverless",
+    "api",
+    "lambda",
+    "rest",
+    "webpack"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jens Johnson",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^3.14.0",
+    "serverless-functions-base-path": "^1.0.32",
+    "serverless-webpack": "^5.7.0",
+    "webpack": "^5.72.0"
+  }
+}

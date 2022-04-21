@@ -1,0 +1,6 @@
+HttpAuthorizer:
+  identitySource: $request.header.Authorization
+  issuerUrl:
+    Fn::Join: [ '', [ 'https://cognito-idp.', '${opt:region, self:provider.region, "us-east-1"}', '.amazonaws.com/', Ref: CognitoUserPool ] ]
+  audience:
+    - Ref: CognitoUserPoolClient
