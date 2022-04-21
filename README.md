@@ -2,11 +2,12 @@
 
 ![](https://img.shields.io/badge/v-0.1.0-blue?style=for-the-badge) ![](https://img.shields.io/github/languages/code-size/jens-johnson/jens-johnson-apis?style=for-the-badge)
 
-<small><b>Let's Get In Touch</b></small>
+<small><b>Let's Get In Touch:</b></small>
 
+[![](docs/.images/icons/website.svg)](https://jens-johnson.com)
 [![](docs/.images/icons/linkedin.svg)](https://www.linkedin.com/jens-johnson)
 [![](docs/.images/icons/twitter.svg)](https://www.twitter.com/JensJohnson9)
-[![](docs/.images/icons/website.svg)](https://www.twitter.com/JensJohnson9)
+[![](docs/.images/icons/reddit.svg)](https://www.reddit.com/user/jens-johnson)
 
 ## Introduction
 
@@ -73,7 +74,7 @@ deliver it to them. Why not apply this to how I utilize information in my own li
 
 ### The Vision
 
-![](docs/.images/jj-api-vision.svg)
+![](docs/.images/overview/api-vision.png)
 
 Everything that was just discussed is both very abstract and simple. In short, I want to aggregate and analyze 
 information about my personal life. However, what information that consists of, and how its acquired, interpreted, 
@@ -86,6 +87,3 @@ underlying services and infrastructure needed to fit my information and data use
 
 ## [`docs`](docs)
 Various documentation
-
-<style>
-</style>
