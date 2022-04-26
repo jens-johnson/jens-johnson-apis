@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: jens-johnson-api-daily-narrative
+  description: An API providing daily narrative information for my personal use cases
+  version: 1.0.0
+paths:
+  /test:
+    post:
+      summary: Debug POST endpoint
+      description: Endpoint for debugging POST requests; provide a request containing several primitive types to be transformed
+      tags:
+        - Test Data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/TestPostRequestBody'
+      responses:
+        200:
+          description: 'OK'
+          headers:
+            content-type:
+              $ref: '#/components/headers/content-type'
+            charset:
+              $ref: '#/components/headers/charset'
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/TestPostResponseBody'
+    get:
+      summary: Debug GET endpoint
+      description: Endpoint for debugging GET requests; provide a list of values as a query param (with secret key) to be hash-mapped
+      tags:
+        - Test Data
+      parameters:
+        - in: query
+          name: secretKey
+          description: Secret key to generate hash mapping
+          required: true
+          schema:
+            type: string
+          example: mysecretkey
+        - in: query
+          name: values
+          description: Values to map
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          example: [ "a", "b", "c", "d" ]
+
+      responses:
+        200:
+          description: 'OK'
+          headers:
+            content-type:
+              $ref: '#/components/headers/content-type'
+            charset:
+              $ref: '#/components/headers/charset'
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/TestGetResponseBody'
+
+
+
+components:
+  headers:
+    content-type:
+      schema:
+        type: string
+        example: application/json
+    charset:
+      schema:
+        type: string
+        example: UTF-8
+
+  responses:
+    Unauthorized:
+      description: 'Unauthorized'
+    ServerError:
+      description: 'Internal Server Error'
+
+  schemas:
+    TestPostRequestBody:
+      description: A payload of test data to send as a health check
+      type: object
+      properties:
+        stringType:
+          description: A string to be validated/transformed
+          type: string
+          example: foo Bar
+        numberType:
+          description: A number to be validated/transformed
+          type: number
+          minimum: 0
+          maximum: 10
+          example: 1
+        objectType:
+          description: An object to be validated/transformed
+          type: object
+          maxProperties: 5
+          example: { 'key1': { 'bar': true, 'baz': false }, 'key2': 100 }
+        booleanType:
+          description: A boolean to be validated/transformed
+          type: boolean
+          example: false
+        arrayType:
+          description: An array type to be validated/transformed
+          type: array
+          maxItems: 10
+          items:
+            type: string
+          example: [ 'foo bar', 'Baz' ]
+
+    TestPostResponseBody:
+      description: Transformed test post data for validation
+      type: object
+      properties:
+        timestamp:
+          description: The current date/time
+          type: string
+          format: date-time
+        stringType:
+          description: A validated/transformed string, as an upper-cased string of the input string type
+          type: string
+          example: FOO_BAR
+        numberType:
+          description: A validated/transformed number, a scalar of 10 of the original number type
+          type: number
+          example: 10
+        objectType:
+          description: A validated/transformed object, describing the keys/values of the input object type
+          type: object
+          maxProperties: 5
+          example: { 'key1': 'Keys: bar, baz', 'key2': 'Values: 100' }
+        booleanType:
+          type: boolean
+          description: A validated/transformed boolean, the reverse of the input boolean type
+          example: true
+        arrayType:
+          description: An validated/transformed array, with upper-cased items of the input array type
+          type: array
+          maxItems: 10
+          items:
+            type: string
+          example: [ 'FOO_BAR', 'BAZ' ]
+
+    TestGetResponseBody:
+      description: Test data validation
+      type: object
+      properties:
+        timestamp:
+          description: The current ISO timestamp
+          type: string
+          format: date-time
+        hashMap:
+          description: A mapping of the query values to hash values
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                description: The query value
+                example: a
+              mapping:
+                type: string
+                description: The query value's corresponding mapping
+                example: ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb
+            required:
+              - value
+              - mapping
+
+  securitySchemes:
+    BearerAuthentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuthentication: []

@@ -1,7 +1,7 @@
-testPostHandler:
-  handler: test/post.handler
+testGetHandler:
+  handler: test/get.handler
   events:
     - httpApi:
-        method: POST
+        method: GET
         path: /test
         authorizer: HttpAuthorizer

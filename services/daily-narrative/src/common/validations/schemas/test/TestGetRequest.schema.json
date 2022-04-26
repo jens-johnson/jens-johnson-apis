@@ -1,0 +1,20 @@
+{
+  "title": "TestGetRequest",
+  "description": "A schema representing query string parameters for test GET requests",
+  "type": "object",
+  "properties": {
+    "secretKey": {
+      "type": "string"
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "secretKey",
+    "values"
+  ]
+}

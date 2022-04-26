@@ -1,12 +1,17 @@
 org: jensjohnson
 app: apis
-service: apis
+service: daily-narrative
 
 configValidationMode: error
 
 custom:
   stack:
     name: '${self:org}-${self:app}-${self:service}-${opt:stage, "dev"}'
+  cognito:
+    callbackURI: '${opt:cognitoCallbackURI, "https://localhost:3000"}'
+    userPool:
+      domain:
+        Fn::Join: [ '-', [ Ref: AWS::StackName, 'user-pool-domain' ] ]
   webpack:
     webpackConfig: webpack.config.js
     excludeFiles:
@@ -15,17 +20,23 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   stackName: '${self:custom.stack.name}'
   httpApi:
     authorizers: ${file(./infrastructure/resources/authentication/authorizers.yml)}
 
 functions:
   - ${file(./infrastructure/functions/test/post.yml)}
+  - ${file(./infrastructure/functions/test/get.yml)}
 
 resources:
   - ${file(./infrastructure/resources/authentication/cognito.yml)}
 
+outputs:
+  cognitoUserPoolClientURL:
+    Fn::Join: [ '', [ 'https://', Ref: AWS::StackName, '-user-pool-domain.auth.', Ref: AWS::Region, '.amazoncognito.com/login?response_type=token&client_id=', Ref: CognitoUserPoolClient, "&redirect_uri=${self:custom.cognito.callbackURI}" ] ]
+
 plugins:
-  - serverless-webpack
   - serverless-functions-base-path
+  - serverless-webpack
+  - serverless-offline
