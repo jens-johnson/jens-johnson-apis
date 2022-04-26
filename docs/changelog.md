@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.1 Beta]
 
+## [0.1.0] - 2022-04-25
+### Changed
+- Updated `daily-narrative` service to use functional serverless deployment with test API endpoints
+
 ## [0.1.0] - 2022-04-20
 ### Added
 - Created initial project scaffolding with:
