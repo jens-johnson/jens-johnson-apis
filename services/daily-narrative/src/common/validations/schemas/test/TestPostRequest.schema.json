@@ -1,0 +1,34 @@
+{
+  "title": "TestPostRequest",
+  "description": "A schema representing post request bodies to the test endpoint",
+  "type": "object",
+  "properties": {
+    "stringType": {
+      "type": "string"
+    },
+    "numberType": {
+      "type": "number"
+    },
+    "objectType": {
+      "type": "object",
+      "maxProperties": 5
+    },
+    "booleanType": {
+      "type": "boolean"
+    },
+    "arrayType": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "stringType",
+    "numberType",
+    "objectType",
+    "booleanType",
+    "arrayType"
+  ]
+}

@@ -1,36 +1,52 @@
+import { mapValues } from 'lodash';
 import { ApiError } from '@/common/error';
+import { SCHEMAS, validate } from '@/common/validations';
+import { toErrorResponse, toResponse } from '@/handlers/response';
 
-function parseRequest(event) {
-  return event.body
-    ? Promise.resolve(JSON.parse(event.body))
-    : Promise.reject(new ApiError('Unable to parse request body', 400));
+/**
+ * Validates request body using AJV
+ *
+ * @param {Object} requestBody
+ * @return {Promise<Object, ValidationError>}
+ */
+function validateRequest(requestBody) {
+  return validate(SCHEMAS.REQUESTS.TEST.POST, requestBody);
 }
 
-function onResponse(body) {
+/**
+ * Transforms request body to construct a response body
+ *
+ * @param {{ stringType: string, numberType: number, objectType: Object, booleanType: boolean, arrayType: Array }} requestBody
+ * @return {Promise<{timestamp: string, arrayType: Array, numberType: number, booleanType: boolean, stringType: string, timestamp: string, objectType: Object}>}
+ */
+function constructResponse(requestBody) {
   return Promise.resolve({
-    statusCode: 200,
-    body: JSON.stringify({
-      requestBody: body,
-      message: 'Successfully parsed request',
-      timestamp: new Date().toISOString()
-    })
+    timestamp: new Date().toISOString(),
+    stringType: requestBody.stringType.toUpperCase().replace(/ /g, '_'),
+    numberType: requestBody.numberType * 10,
+    objectType: mapValues(requestBody.objectType, obj => `${obj instanceof Object ? "Keys: " + Object.keys(obj).join(', ') : "Values: " + obj}`),
+    booleanType: !requestBody.booleanType,
+    arrayType: requestBody.arrayType.map(k => k.toUpperCase().replace(/ /g, '_'))
   });
 }
 
-function onError(error, callback) {
-  return error instanceof ApiError
-    ? callback(null, {
-      statusCode: error.statusCode,
-      message: error.message,
-      timestamp: new Date().toISOString()
-    })
-    : callback(Error(error));
+/**
+ * Plucks request body from the API GW event
+ *
+ * @param {Object} event - API GW event
+ * @return {Promise<Object,ApiError>}
+ */
+function parseRequest(event) {
+  return event.body
+    ? Promise.resolve(JSON.parse(event.body))
+    : Promise.reject(new ApiError('Unable to parse request – No request body provided', 400));
 }
 
-module.exports.handler = (event, context, callback) => {
+exports.handler = (event) => {
   return Promise.resolve(event)
     .then(parseRequest)
-    .then(onResponse)
-    .then(response => callback(null, response))
-    .catch(error => onError(error, callback));
+    .then(validateRequest)
+    .then(constructResponse)
+    .then(toResponse)
+    .catch(toErrorResponse);
 };

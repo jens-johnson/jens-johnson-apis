@@ -28,7 +28,7 @@ Resources:
       UserPoolId:
         Ref: CognitoUserPool
       CallbackURLs:
-        - https://localhost:3000
+        - "${self:custom.cognito.callbackURI}"
       ExplicitAuthFlows:
         - ALLOW_USER_SRP_AUTH
         - ALLOW_REFRESH_TOKEN_AUTH
@@ -40,5 +40,4 @@ Resources:
     Properties:
       UserPoolId:
         Ref: CognitoUserPool
-      Domain:
-        Fn::Join: [ '-', [ Ref: AWS::StackName, 'user-pool-domain' ] ]
+      Domain: "${self:custom.cognito.userPool.domain}"
