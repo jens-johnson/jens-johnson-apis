@@ -1,13 +1,14 @@
 # Jens Johnson APIs
 
-![](https://img.shields.io/badge/v-0.1.0-blue?style=for-the-badge) ![](https://img.shields.io/github/languages/code-size/jens-johnson/jens-johnson-apis?style=for-the-badge)
+![](https://img.shields.io/badge/v-0.1.0-blue?style=flat-square)
+![](https://img.shields.io/github/languages/code-size/jens-johnson/jens-johnson-apis?style=flat-square)
 
 <small><b>Let's Get In Touch:</b></small>
 
-[![](docs/.images/icons/website.svg)](https://jens-johnson.com)
-[![](docs/.images/icons/linkedin.svg)](https://www.linkedin.com/jens-johnson)
-[![](docs/.images/icons/twitter.svg)](https://www.twitter.com/JensJohnson9)
-[![](docs/.images/icons/reddit.svg)](https://www.reddit.com/user/jens-johnson)
+[![jens-johnson.com](https://img.shields.io/badge/-jens--johnson.com-grey?style=for-the-badge&link=https://jens-johnson.com&color=303030&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAsZJREFUSEvdlj9uFUEMxj9LSFAgEU5AUlIBJyA3AEoqwgkIFS2cIOEECRVlQkUJOQGhogRuABIFBZLRz7JX82Z3eU8iTw9habW7Y4//zWd7TBsi25Bd/fuG3X1b0j1Ju5JuS+If+iLpXNJ7Sa/M7NsqWVwasbtvSTqQ9EDSsaRTM8PIQO6OM/cl7Uk6kfR0mQN/NOzuKDuS9D0VEllFiuGPZnbaOfFc0j6O9A62crOG3R3vMUrqzvKNUaIl1aQdw3wvkLuXzL6ZkaURTRrO1BFJnGe/OTOBwl0zIwu9YZf0OB2/MyUzMpxn+oGNc6lyd6Lk3M/MjNQG5d5HiQfSjRx8nF8A3ZRhBLfNjFSPKI2SDSI+bBW6OwgnzfBv5fHs8G4dROmUYTzb60GTEREBSgHOXIqvS/os6WWCLLaaGesDmbsDnKJLkq5K+plPHzG8XzM8ZCm9oh8py3/pZG8Qhj/lmUxldl1rJ2HYzG4mMEgl50S6w3sz47+AA79PMXI8BZ54c/aJB/bHvlyjJN+2hqsVIgizDACMc3cHdAAK0KEcPnsgzp09OBB7wUiWJWvopBlBfD+rVD/MxYqo3luUVCpABKUYjSw0/7WOERwqEOIY8pVJEI/s6yHidR3mlN443k2Cqy+nK5IohZ5Yv5wDo+WNSiWZLeDG5dRrd3fOhM610OIS9dGxqndnz6Z10o97+UJzAMrM2hqf7FzRe/sWlyU18PJiAFiYQAujMWVjdifyV2qZhcxRW8ySCqfcHcWUzeEMgCg7BsaOmbUzPMTnxiLwD+h3Q6AmUTSNuUGSEZeOydG57CKAoSHyZjJd65t+G3XKvcsr0OoXgVLSGDoysxcZCallei2AJXmsPclLwOQEK92rXvYwVvcvLntDCSba7yafTvWG4f9Xl70ufUQDYKqn30j+1+Z6S6ldzPV2Xa10aar/O8O/AX4gWaL6jIupAAAAAElFTkSuQmCC)](https://jens-johnson.com)
+[![Twitter: @jensjohnson9](https://img.shields.io/badge/-%40jensjohnson9-grey?style=for-the-badge&logo=twitter&link=https://www.twitter.com/jensjohnson9&color=303030&logoColor=1DA1F2)](https://www.twitter.com/jensjohnson9)
+[![LinkedIn: @jens-johnson](https://img.shields.io/badge/-%40jens--johnson-grey?style=for-the-badge&logo=linkedin&link=https://www.linkedin.com/in/jens-johnson&color=303030&logoColor=0e76a8)](https://www.linkedin.com/in/jens-johnson)
+[![Reddit: @jens-johnson](https://img.shields.io/badge/-%40jens--johnson-grey?style=for-the-badge&logo=reddit&link=https://www.reddit.com/user/jens-johnson&color=303030&logoColor=ff4500)](https://www.reddit.com/user/jens-johnson)
 
 ## Introduction
 
